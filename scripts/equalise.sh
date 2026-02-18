@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
-# equalize.sh — Recursively equalize tmux pane sizes while preserving layout structure.
+# equalise.sh — Recursively equalise tmux pane sizes while preserving layout structure.
 #
-# Usage: bash scripts/equalize.sh
+# Usage: bash scripts/equalise.sh
 #
 # Parses the tmux layout string, rebuilds it with equal dimensions at each
 # split level, and applies it atomically via `tmux select-layout`.
@@ -123,7 +123,7 @@ parse_node() {
 # Equalize
 # ---------------------------------------------------------------------------
 
-equalize_node() {
+equalise_node() {
     local id=$1 avail_w=$2 avail_h=$3 x=$4 y=$5
 
     NODE_W[$id]=$avail_w
@@ -149,7 +149,7 @@ equalize_node() {
             if [[ $i -ge $((n - remainder)) && $remainder -gt 0 ]]; then
                 child_w=$((base + 1))
             fi
-            equalize_node "${children[$i]}" "$child_w" "$avail_h" "$cx" "$y"
+            equalise_node "${children[$i]}" "$child_w" "$avail_h" "$cx" "$y"
             cx=$((cx + child_w + 1))
         done
     else
@@ -164,7 +164,7 @@ equalize_node() {
             if [[ $i -ge $((n - remainder)) && $remainder -gt 0 ]]; then
                 child_h=$((base + 1))
             fi
-            equalize_node "${children[$i]}" "$avail_w" "$child_h" "$x" "$cy"
+            equalise_node "${children[$i]}" "$avail_w" "$child_h" "$x" "$cy"
             cy=$((cy + child_h + 1))
         done
     fi
@@ -256,7 +256,7 @@ main() {
     local root_id="$RETVAL"
 
     # Equalize from root dimensions
-    equalize_node "$root_id" "${NODE_W[$root_id]}" "${NODE_H[$root_id]}" "${NODE_X[$root_id]}" "${NODE_Y[$root_id]}"
+    equalise_node "$root_id" "${NODE_W[$root_id]}" "${NODE_H[$root_id]}" "${NODE_X[$root_id]}" "${NODE_Y[$root_id]}"
 
     # Serialize
     serialize_node "$root_id"
