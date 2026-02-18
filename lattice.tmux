@@ -5,7 +5,8 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/scripts/helpers.sh"
 
 main() {
-    tmux bind-key $(get_tmux_option "@lattce-equalise" "=") "run -b '$CURRENT_DIR/scripts/equalise.sh'"
+    tmux display-message "Lattice: Initialising key bindings..."
+    tmux bind-key $(get_tmux_option "@lattce_equalise_key" "=") "run -b '$CURRENT_DIR/scripts/equalise.sh'"
 }
 
 main
