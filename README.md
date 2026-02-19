@@ -10,10 +10,13 @@ Add the following line to your ~/.tmux.conf (or ~/.config/tmux/tmux.conf) file:
 set -g @plugin 'phil/tmux-lattice'
 ```
 
-## Key Bindings
+## Equalise Panes
 
-- prfix + =: Equalise panes in the current window
+![Lattice Equalise](https://github.com/phil/tmux-devcontainers/blob/main/resources/menu-commands.png?raw=true)
+
+- `prefix` + `=`: Equalise panes in the current window
 
 ```
+# Override the default key binding for equalising panes (optional)
 set-option -g @lattice_equalise_key 'M' # default: '='
 ```
