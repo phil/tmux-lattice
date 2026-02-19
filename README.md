@@ -12,7 +12,7 @@ set -g @plugin 'phil/tmux-lattice'
 
 ## Equalise Panes
 
-![Lattice Equalise](https://github.com/phil/tmux-devcontainers/blob/main/resources/menu-commands.png?raw=true)
+![Lattice Equalise](https://github.com/phil/tmux-lattice/blob/main/resources/tmux-lattice.gif?raw=true)
 
 - `prefix` + `=`: Equalise panes in the current window
 
